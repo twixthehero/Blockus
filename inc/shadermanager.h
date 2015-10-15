@@ -1,5 +1,7 @@
 #pragma once
 #include <GL\glew.h>
+#include <unordered_map>
+using namespace std;
 
 class ShaderManager
 {
@@ -9,6 +11,9 @@ public:
 
 	void init();
 	GLuint getDefaultShader();
+	GLuint getShader(string);
 private:
-	GLuint defaultShader;
+	void load(string);
+
+	unordered_map<string, GLuint> loadedShaders;
 };

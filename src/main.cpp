@@ -3,16 +3,20 @@
 
 #include <iostream>
 
+#include "color.h"
 #include "shader.h"
 #include "shadermanager.h"
 
 using namespace std;
 
+//CORNFLOWER BLUE
+const Color CB(101, 156, 239);
+
 float points[] =
 {
-	0, 0, 0,
-	1, 0, 0,
-	0, 1, 0
+	0, 0.5f, 0,
+	0.5f, -0.5f, 0,
+	-0.5f, -0.5f, 0
 };
 
 GLuint vbo = 0;
@@ -22,7 +26,7 @@ ShaderManager sm;
 
 void init()
 {
-	glClearColor(101 / 255.0f, 156 / 255.0f, 239 / 255.0f, 1.0f);
+	glClearColor(0, 0, 0, 1);
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -51,8 +55,6 @@ void render()
 	glBindVertexArray(vao);
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	//glDisableVertexAttribArray(0);
 
 	glFlush();
 }

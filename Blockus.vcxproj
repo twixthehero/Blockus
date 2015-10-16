@@ -18,6 +18,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\block.h" />
+    <ClInclude Include="inc\chunk.h" />
+    <ClInclude Include="inc\color.h" />
+    <ClInclude Include="inc\shader.h" />
+    <ClInclude Include="inc\shadermanager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\default.fs" />
+    <None Include="shaders\default.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\block.cpp" />
+    <ClCompile Include="src\chunk.cpp" />
+    <ClCompile Include="src\color.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\shadermanager.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7C1EB01D-4F02-4CD8-9950-A5A9450653BC}</ProjectGuid>
     <RootNamespace>Blockus</RootNamespace>
@@ -69,7 +88,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)lib\glm-0.9.7.0;$(ProjectDir)lib\glfw-3.1.1\include;$(ProjectDir)lib\glew-1.13.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)lib\glm-0.9.7.0;$(ProjectDir)lib\glfw-3.1.1\include;$(ProjectDir)lib\glew-1.13.0\include;$(ProjectDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)lib\glfw-3.1.1\lib;$(ProjectDir)lib\glew-1.13.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -122,17 +141,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="color.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="shader.cpp" />
-    <ClCompile Include="shadermanager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="color.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="shadermanager.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

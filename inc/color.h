@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+using namespace std;
+
 class Color
 {
 public:
@@ -7,6 +10,8 @@ public:
 	Color(float, float, float);
 	Color(float, float, float, float);
 	~Color();
+
+	string toString();
 
 	float r;
 	float g;

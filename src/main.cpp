@@ -10,7 +10,7 @@
 using namespace std;
 
 //CORNFLOWER BLUE
-const Color CB(101, 156, 239);
+Color CB(101, 156, 239);
 
 float points[] =
 {
@@ -19,8 +19,16 @@ float points[] =
 	-0.5f, -0.5f, 0
 };
 
-GLuint vbo = 0;
+float colors[] =
+{
+	1.0f, 0, 0,
+	0, 1.0f, 0,
+	0, 0, 1.0f
+};
+
 GLuint vao = 0;
+GLuint vbo = 0;
+GLuint vco = 0;
 
 ShaderManager sm;
 
@@ -32,12 +40,19 @@ void init()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
 
+	glGenBuffers(1, &vco);
+	glBindBuffer(GL_ARRAY_BUFFER, vco);
+	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), colors, GL_STATIC_DRAW);
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
-
-	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glBindBuffer(GL_ARRAY_BUFFER, vco);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
 
 	sm.init();
 }
@@ -92,6 +107,9 @@ int main()
 	const GLubyte* version = glGetString(GL_VERSION);
 	cout << "Renderer: " << renderer << endl;
 	cout << "Open GL Version: " << version << endl;
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 
 	init();
 	while (!glfwWindowShouldClose(window))
